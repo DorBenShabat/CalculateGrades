@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Years>
+@{
+    ViewData["Title"] = "Home Page";
+}
+<html dir="rtl">
+   
+<div class="container-fluid">
+     <div class="calculator">
+        <div class="output"> 
+           <p class="line-1 anim-typewriter">פותח ע"י דור בן שבת</p>     
+        </div>
+        
+            <div class="buttons">
+            <button class="bg-red">1</button>
+            <button class="bg-red">2</button>
+            <button class="bg-red">3</button>
+            <button class="bg-red">+</button>
+            <button class="bg-red">4</button>
+            <button class="bg-red">5</button>
+            <button class="bg-red">6</button>
+            <button class="bg-red">-</button>
+            <button class="bg-red">7</button>
+            <button class="bg-red">8</button>
+            <button class="bg-red">9</button>
+            <button class="bg-red">*</button>
+            <button class="bg-green">=</button>
+            <button class="bg-red">0</button>
+            <button class="bg-red">C</button>
+            <button class="bg-red">/</button>
+           
+            </div>
+        </div>
+
+    </div>
+<div class="row pb-sm-3">
+
+    @foreach (var years in Model)
+    {
+        <div class="col-lg-3 col-md-6">
+            <div class="row pb-2">
+                <div class="book mb-3">
+                    <div class="card mb-3">
+                       
+                        <div class="card-body">
+                            <a asp-action="Details" class="btn btn-primary form-control" asp-route-YearNum="@years.YearNum">
+                                פרטים
+                            </a>
+                        </div>
+                    </div>
+                    <div class="cover">
+                        <div class="card-header">
+                            <p class="card-title h5 text-primary text-center">@years.Year</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    }
+    </div>
+</div>
+</html>

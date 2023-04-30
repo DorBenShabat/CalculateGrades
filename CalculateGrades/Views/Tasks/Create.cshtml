@@ -1,0 +1,34 @@
+﻿@model CalculateGrades.ViewModels.TasksViewModel
+
+<div class="container">
+    <html dir="rtl">
+    <h1>הוספת מטלה חדשה</h1>
+    <form asp-controller="Tasks" asp-action="Create" method="post">
+
+        <div class="form-group">
+            <label asp-for="TaskName" class="control-label"></label>
+            <input asp-for="TaskName" class="form-control" />
+            <span asp-validation-for="TaskName" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Grade" class="control-label"></label>
+            <input asp-for="Grade" class="form-control" />
+            <span asp-validation-for="Grade" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="PercentageOfFinalGrade" class="control-label"></label>
+            <input asp-for="PercentageOfFinalGrade" class="form-control" />
+            <span asp-validation-for="PercentageOfFinalGrade" class="text-danger"></span>
+        </div>
+
+        <input type="hidden" asp-for="CourseNum.CourseNum" value="@Model.CourseNum.CourseNum" />
+
+        <div class="form-group">
+            <input type="submit" value="הוסף" class="btn btn-primary" style="width:150px" />
+            <button onclick="history.go(-1);" class="btn btn-secondary" style="width:150px">חזור לעמוד הקודם</button>
+        </div>
+
+    </form>
+</div>

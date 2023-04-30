@@ -1,0 +1,27 @@
+﻿<html dir="rtl">
+<div class="row pt-4 pb-3">
+    <div class="col-6">
+        <h2>רשימת קורסים</h2>
+    </div>
+    <div class="col-6 text-start">
+        <a asp-controller="Course" asp-action="Create" class="btn btn-primary">
+            הוספת קורס <i class="bi bi-plus-circle"></i>
+        </a>
+    </div>
+    
+    <br /><br />
+    <table id="tblData" class="table table-bordered table-striped" style="width:100%">
+        <thead>
+            <tr>
+                <th>שם הקורס</th>
+                <th>מספר</th>
+                <th></th>
+            </tr>
+        </thead>
+    </table>
+</div>
+</html>
+
+@section Scripts{
+    <script src="~/js/course.js"></script>
+}

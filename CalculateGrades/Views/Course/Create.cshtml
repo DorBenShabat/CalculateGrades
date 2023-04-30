@@ -1,0 +1,31 @@
+﻿@model CalculateGrades.ViewModels.CourseYearViewModel
+
+<div class="container">
+    <html dir="rtl">
+    <h1>הוספת קורס חדש</h1>
+
+    <form asp-controller="Course" asp-action="Create" method="post">
+        
+
+        <div class="form-group">
+            <label asp-for="CourseName" class="control-label"></label>
+            <input asp-for="CourseName.CourseName" class="form-control" />
+            <span asp-validation-for="CourseName.CourseName" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="YearNum"></label>
+            <select asp-for="CourseName.YearNum" asp-items="@Model.Years" class="form-select">
+                <option disabled selected>--בחר שנה--</option>
+            </select>
+            <span asp-validation-for="YearNum.Year" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="הוסף" class="btn btn-primary" style="width:150px" />
+            <button onclick="history.go(-1);" class="btn btn-secondary" style="width:150px">חזור לעמוד הקודם</button>
+        </div>
+      
+    </form>
+</html>
+</div>

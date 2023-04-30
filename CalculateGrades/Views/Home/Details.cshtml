@@ -1,0 +1,57 @@
+﻿@model CalculateGrades.ViewModels.YearCoursesViewModel
+
+<div class="container">
+    <html dir="rtl">
+    <h1>@Model.Year.Year</h1>
+    
+    <div class="row pt-4 pb-3">
+        <div class="col-6">
+            <h2>רשימת קורסים</h2>
+        </div>
+        <div class="col-6 text-start">
+            <a asp-controller="Course" asp-action="Create" class="btn btn-primary">
+                הוספת קורס <i class="bi bi-plus-circle"></i>
+            </a>
+        </div>
+    </div>
+
+    <table class="table table-bordered table-striped">
+        <tr>
+            <th>
+                שם הקורס
+            </th>
+            <th>
+
+            </th>
+            <th>
+                ציון קורס
+            </th>
+        </tr>
+        <tbody>
+            @foreach (var obj in Model.Courses)
+            {
+                @if (obj.YearNum == Model.Year.YearNum)
+                {
+                    <tr>
+                        <td>
+                            @obj.CourseName
+                        </td>
+                        <td>
+                            <div class="w-25 btn-group" role="group">
+                                <a asp-controller="Course" asp-action="Details" asp-route-courseNum="@obj.CourseNum" class="btn btn-info mx-2">
+                                    פרטי הקורס <i class="bi bi-pencil-square"></i>
+                                </a>
+
+                            </div>
+                           
+                        </td>
+                       
+                    </tr>
+                }
+            }
+
+        </tbody>
+    </table>
+</html>
+</div>
+

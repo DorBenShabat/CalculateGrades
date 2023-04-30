@@ -1,0 +1,159 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+.delete-link {
+    color: red;
+}
+
+    .delete-link:hover {
+        color: white;
+    }
+
+.modal-confirm .modal-dialog {
+    margin-top: 100px;
+}
+
+.modal-confirm .modal-header {
+    border-bottom: none;
+    position: relative;
+}
+
+.modal-confirm h4 {
+    text-align: center;
+    font-size: 26px;
+    margin: 30px 0 -20px;
+}
+
+.modal-confirm .form-control, .modal-confirm .btn {
+    min-height: 40px;
+    border-radius: 3px;
+}
+
+.modal-confirm .close {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+}
+
+.modal-confirm .modal-footer {
+    border: none;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 13px;
+}
+
+.modal-confirm .icon-box {
+    color: #fff;
+    position: absolute;
+    margin: -60px 0 0 -60px;
+    top: 50%;
+    left: 50%;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    z-index: 9;
+    background: #82ce34;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+}
+
+    .modal-confirm .icon-box i {
+        font-size: 58px;
+        position: relative;
+        top: 3px;
+    }
+
+.modal-confirm.modal-dialog {
+    max-width: 400px;
+}
+
+.modal-confirm .btn {
+    background: #82ce34;
+    border: none;
+    line-height: normal;
+}
+
+    .modal-confirm .btn:hover, .modal-confirm .btn:focus {
+        background: #6fb32b;
+    }
+
+.modal-confirm .modal-body {
+    color: #999;
+}
+
+$(document).ready(function() {
+    // ... other code ...
+    $('.delete-link').click(function(e) {
+        e.preventDefault();
+        var courseName = $(this).data('course-name');
+        var courseId = $(this).data('course-id');
+        var modalHtml = `
+            <div class="modal fade" id="confirm-delete-modal" tabindex="-1" role="dialog" aria-labelledby="confirm-delete-modal-label" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="icon-box">
+                                <i class="bi bi-trash3"></i>
+                            </div>
+                            <p>האם אתה בטוח שברצונך למחוק את הקורס "${courseName}"?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">ביטול</button>
+                            <button type="button" class="btn btn-danger" id="confirm-delete-btn" data-course-id="${courseId}">מחיקה</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        $('body').append(modalHtml);
+        $('#confirm-delete-modal').modal('show');
+
+        $('#confirm-delete-btn').click(function() {
+            var courseId = $(this).data('course-id');
+            deleteCourse(courseId);
+        });
+    });
+});
+
+function deleteCourse(courseId) {
+    $.ajax({
+        url: `/courses/delete/${courseId}`,
+        type: 'DELETE',
+        success: function(data) {
+            if (data.success) {
+                toastr.success(data.message);
+                $('#confirm-delete-modal').modal('hide');
+                // Reload the page after successful deletion
+                window.location.reload();
+            } else {
+                toastr.error(data.message);
+            }
+        },
+        error: function() {
+            toastr.error('An error occurred while deleting the course.');
+        }
+    });
+}
