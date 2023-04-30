@@ -17,7 +17,7 @@ function loadDataTable() {
                 "render": function (data) {
                     return `
                           <div class="w-75 btn-group" role="group">
-                            <a href="/Course/Upsert?id=${data}"
+                            <a href="/course/upsert?courseNum=${data}"
                             class="btn btn-primary mx-2">ערוך <i class="bi bi-pencil-square"></i></a>
                             <a onClick=Delete('/course/delete?courseNum=${data}') class="btn btn-danger mx-2">מחק <i class="bi bi-trash-fill"></i> </a>
 

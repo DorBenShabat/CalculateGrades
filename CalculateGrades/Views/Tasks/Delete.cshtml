@@ -1,0 +1,23 @@
+﻿@model Tasks
+<html dir="rtl">
+<form method="post" asp-action="DeletePost">
+    <input asp-for="TaskId" hidden />
+    <div class="broder p-3 mt-4">
+        <div class="row pb-2">
+            <h2 class="text-primary">מחיקת משימה</h2>
+            <hr />
+        </div>
+        <div class="mb-3">
+            <label asp-for="TaskName"></label>
+            <input asp-for="TaskName" disabled class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label asp-for="Grade"></label>
+            <input asp-for="Grade" disabled class="form-control" />
+        </div>
+        <button type="submit" class="btn btn-danger" style="width:150px">מחק</button>
+       
+        </a>
+    </div>
+</form>
+</html>

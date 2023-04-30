@@ -60,21 +60,7 @@ namespace CalculateGrades.Controllers
 
         public IActionResult Details(int? courseNum)
         {
-            //var course = _db.Course.GetFirstOrDefault(c => c.CourseNum == courseNum);
-
-            //if (course == null)
-            //{
-            //    return NotFound();
-            //}
-
-            //var viewModel = new CourseDeatilViewModel
-            //{
-            //    CourseName = course.CourseName,
-            //    CourseNum = course.CourseNum,
-            //    YearNum = course.YearNum
-            //};
-
-            //return View(viewModel);
+           
             var course = _db.Course.GetFirstOrDefault(c => c.CourseNum == courseNum);
 
             if (course == null)
@@ -99,6 +85,16 @@ namespace CalculateGrades.Controllers
             };
 
             return View(viewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+
+        public IActionResult Upsert(CourseYearViewModel obj)
+        {
+            _db.Course.Update(obj.CourseName);
+            _db.Course.Save();
+            return RedirectToAction("Index");
         }
 
 

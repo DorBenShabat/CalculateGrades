@@ -55,6 +55,22 @@ namespace CalculateGrades.Controllers
 
             return RedirectToAction("Details", "Course", new { coursenum = course.CourseNum });
         }
+        //GET
+        public IActionResult Delete(int? taskId)
+        {
+            var taskFromDB = _db.Tasks.FirstOrDefault(t => t.TaskId == taskId);
+            return View(taskFromDB);
+        }
+        //POST
+        [HttpPost]
+        public IActionResult DeletePost(int? taskId)
+        {
+            var obj = _db.Tasks.FirstOrDefault(t => t.TaskId == taskId);
+            _db.Tasks.Remove(obj);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
 
     }
 }
