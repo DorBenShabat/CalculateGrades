@@ -17,7 +17,7 @@ namespace CalculateGrades.Repository
 
         public void Update(Courses obj)
         {
-            _db.courses.Update(obj);
+           _db.courses.Update(obj);
         }
     }
 

@@ -15,7 +15,7 @@ namespace CalculateGrades.ViewModels
        
         [Display(Name = "שנת לימוד")]
         public Years YearNum { get; set; }
-
+        [ValidateNever]
         public IEnumerable<SelectListItem> Years { get; set; }
     }
 

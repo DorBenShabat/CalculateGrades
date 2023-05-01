@@ -15,6 +15,7 @@ namespace CalculateGrades.Models
         [Required]
         [DisplayName("שם הקורס")]
         public string CourseName { get; set; }
+        
         [DisplayName("מספר שנה")]
         public int YearNum { get; set; }
 

@@ -11,7 +11,7 @@ function loadDataTable() {
         },
         "columns": [
             { "data": "courseName", "width": "15%" },
-            { "data": "courseNum", "width": "15%" },
+            
             {
                 data: "courseNum",
                 "render": function (data) {

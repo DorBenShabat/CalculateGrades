@@ -1,21 +1,28 @@
 ﻿@model CalculateGrades.ViewModels.CourseYearViewModel
 
-<form method="post" asp-action="Upsert">
-    <input asp-for="CourseName.CourseNum" hidden />
+
+<html dir="rtl">
+<form asp-controller="Course" asp-action="Upsert" method="post">
+ <input asp-for="CourseName.CourseNum" hidden/>
+
+
     <div class="mb-3">
-        <label asp-for="CourseName.CourseName"></label>
+        <label asp-for="CourseName.CourseName" class="text-primary" style="font-size:x-large"></label>
         <input asp-for="CourseName.CourseName" class="form-control" />
         <span asp-validation-for="CourseName.CourseName" class="text-danger"></span>
     </div>
-    <div class="mb-3">
-        <label asp-for="YearNum"></label>
-        <input asp-for="YearNum" class="form-control" />
-        <span asp-validation-for="YearNum" class="text-danger"></span>
-    </div>
+  
+  
+
     <div class="col-12">
-        <button type="submit" class="btn btn-primary" style="width:150px">Submit</button>
+        <button type="submit" class="btn btn-primary" style="width:150px">שנה</button>
     </div>
+
 </form>
+</html>
+
 @section Scripts{
-    <script src="~/js/course.js"></script>
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
 }

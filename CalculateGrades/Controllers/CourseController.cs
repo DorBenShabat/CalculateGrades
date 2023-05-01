@@ -87,15 +87,47 @@ namespace CalculateGrades.Controllers
             return View(viewModel);
         }
 
+        public IActionResult Upsert(int? courseNum)
+        {
+            Courses course = _db.Course.GetFirstOrDefault(c => c.CourseNum == courseNum);
+
+            if (course == null)
+            {
+                return NotFound();
+            }
+
+            CourseYearViewModel viewModel = new CourseYearViewModel
+            {
+                CourseName = course,
+                YearNum = course.Year,
+                Years = _dB.years.Select(i => new SelectListItem
+                {
+                    Text = i.Year,
+                    Value = i.YearNum.ToString(),
+                    Selected = i.YearNum == course.YearNum
+                })
+            };
+
+            return View(viewModel);
+        }
         [HttpPost]
         [ValidateAntiForgeryToken]
-
-        public IActionResult Upsert(CourseYearViewModel obj)
+        public IActionResult Upsert(CourseYearViewModel viewModel)
         {
-            _db.Course.Update(obj.CourseName);
-            _db.Course.Save();
-            return RedirectToAction("Index");
+            Courses course = _dB.courses.Find(viewModel.CourseName.CourseNum);
+            if (course == null)
+            {
+                return NotFound();
+            }
+
+            course.CourseName = viewModel.CourseName.CourseName;
+            _dB.courses.Update(course);
+            _dB.SaveChanges();
+
+            return RedirectToAction("Details", "Home", new { yearNum = course.YearNum });
+
         }
+
 
 
         #region API Calls
@@ -122,6 +154,9 @@ namespace CalculateGrades.Controllers
             return Json(new { success = true, message = "Delete Successful" });
 
         }
+
+       
+
         #endregion
     }
 }
