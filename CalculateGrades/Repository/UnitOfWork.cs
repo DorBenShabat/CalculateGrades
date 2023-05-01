@@ -18,9 +18,11 @@ namespace CalculateGrades.Repository
             _db = db;
             Course = new CourseRepository(_db);
             Tasks = new TasksRepository(_db);
+            Years = new YearRepository(_db);
         }
         public ICourseRepository Course { get; private set; }
         public ITasksRepository Tasks { get; private set; }
+        public IYearRepository Years { get; private set; }
 
         public void Save()
         {

@@ -3,14 +3,14 @@
     ViewData["Title"] = "Home Page";
 }
 <html dir="rtl">
-   
+
 <div class="container-fluid">
-     <div class="calculator">
-        <div class="output"> 
-           <p class="line-1 anim-typewriter">פותח ע"י דור בן שבת</p>     
+    <div class="calculator">
+        <div class="output">
+            <p class="line-1 anim-typewriter">פותח ע"י דור בן שבת</p>
         </div>
-        
-            <div class="buttons">
+
+        <div class="buttons">
             <button class="bg-red">1</button>
             <button class="bg-red">2</button>
             <button class="bg-red">3</button>
@@ -27,11 +27,11 @@
             <button class="bg-red">0</button>
             <button class="bg-red">C</button>
             <button class="bg-red">/</button>
-           
-            </div>
-        </div>
 
+        </div>
     </div>
+
+</div>
 <div class="row pb-sm-3">
 
     @foreach (var years in Model)
@@ -40,7 +40,7 @@
             <div class="row pb-2">
                 <div class="book mb-3">
                     <div class="card mb-3">
-                       
+
                         <div class="card-body">
                             <a asp-action="Details" class="btn btn-primary form-control" asp-route-YearNum="@years.YearNum">
                                 פרטים
@@ -55,8 +55,9 @@
                 </div>
             </div>
         </div>
-        
+
     }
-    </div>
+</div>
 </div>
 </html>
+

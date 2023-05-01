@@ -10,6 +10,7 @@ namespace CalculateGrades.Repository.IRepository
     {
         ICourseRepository Course { get; }
         ITasksRepository Tasks { get; }
+        IYearRepository Years { get; }
 
         void Save();
     }
