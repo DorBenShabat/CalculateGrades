@@ -1,0 +1,21 @@
+﻿@model Years
+<html dir="rtl">
+<form method="post" asp-action="Update">
+    <input asp-for="YearNum" hidden />
+    <div class="broder p-3 mt-4">
+        <div class="row pb-2">
+        <h2 class="text-primary">ערוך שנה</h2>
+        <hr />
+        </div>
+            <div class="mb-3">
+                <label asp-for="Year" class="text-primary" style="font-size:xx-large"></label>
+                <input asp-for="Year"  class="form-control" />
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width:150px">ערוך</button>
+            <a asp-controller="Years" asp-action="Index" class="btn btn-secondary" style="width:200px">
+                חזרה לעמוד הבית &nbsp; <i class="bi bi-list-stars"></i>
+            </a>
+        </div>
+</form>
+</html>

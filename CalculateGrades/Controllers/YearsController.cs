@@ -53,5 +53,18 @@ namespace CalculateGrades.Controllers
             TempData["Success"] = "נמחקה בהצלחה ! {obj.Year}";
             return RedirectToAction("Index");
         }
+        public IActionResult Update(int? id)
+        {
+            var yearsFromDB = unit.Years.GetFirstOrDefault(y => y.YearNum == id);
+            return View(yearsFromDB);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Update(Years obj)
+        {
+            unit.Years.Update(obj);
+            unit.Save();
+            return RedirectToAction("Index");
+        }
     }
 }

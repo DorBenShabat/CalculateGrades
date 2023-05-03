@@ -6,5 +6,6 @@ namespace CalculateGrades.ViewModels
     {
         public Years Year { get; set; }
         public List<Courses> Courses { get; set; }
+        public CourseDeatilViewModel CourseDeatilViewModel { get; set; }
     }
 }
