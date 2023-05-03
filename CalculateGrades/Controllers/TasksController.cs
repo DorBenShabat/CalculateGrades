@@ -68,9 +68,22 @@ namespace CalculateGrades.Controllers
             var obj = _db.Tasks.FirstOrDefault(t => t.TaskId == taskId);
             _db.Tasks.Remove(obj);
             _db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Details", "Course",new {courseNum = obj.CourseNum} );
         }
 
+        public IActionResult Update(int? taskId)
+        {
+            var taskFromDB = unit.Tasks.GetFirstOrDefault(t => t.TaskId == taskId);
+            return View(taskFromDB);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Update(Tasks obj)
+        {
+            unit.Tasks.Update(obj);
+            unit.Save();
+            return RedirectToAction("Details", "Course", new { courseNum = obj.CourseNum });
+        }
 
     }
 }
